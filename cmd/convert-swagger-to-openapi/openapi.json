@@ -1,0 +1,3993 @@
+{
+    "components": {
+        "responses": {
+            "MaskError": {
+                "description": "When any error occurs on mask"
+            },
+            "ParseError": {
+                "description": "When a mask can't be parsed"
+            }
+        },
+        "schemas": {
+            "Asset": {
+                "properties": {
+                    "chassisName": {
+                        "default": "",
+                        "description": "The name of the chassis.  This is useful to reference child hardware to its parent chassis in a multi-chassis set-up.",
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "hwRev": {
+                        "default": "",
+                        "description": "The hardware revision.",
+                        "example": "1.3",
+                        "type": "string"
+                    },
+                    "installedFlash": {
+                        "description": "The amount of installed flash in the chassis (in megabytes).",
+                        "type": "integer"
+                    },
+                    "installedMemory": {
+                        "description": "The amount of installed memory in the chassis (in megabytes).",
+                        "type": "integer"
+                    },
+                    "pcb": {
+                        "default": "",
+                        "description": "The printed circuit board (PCB) number of the hardware.",
+                        "example": "73-9938-05",
+                        "type": "string"
+                    },
+                    "pcbRev": {
+                        "default": "",
+                        "description": "The printed circuit board (PCB) number revision of the hardware.",
+                        "example": "B0",
+                        "type": "string"
+                    },
+                    "physicalElementId": {
+                        "description": "The unique ID in NP for a specific piece of hardware.",
+                        "example": 139163375,
+                        "type": "integer"
+                    },
+                    "physicalSubtype": {
+                        "default": "",
+                        "description": "For chassis physicalType, this field will indicate which are IP-PHONE, LWAP, or UCSB.",
+                        "example": "IP-PHONE",
+                        "type": "string"
+                    },
+                    "physicalType": {
+                        "default": "",
+                        "description": "The physical type of the hardware.  Valid values are: Chassis, Module, Power Supply, Fan.",
+                        "example": "Chassis",
+                        "type": "string"
+                    },
+                    "productFamily": {
+                        "default": "",
+                        "description": "The Cisco Product Family of the hardware.  Values come from MDF for Chassis.",
+                        "example": "Cisco Catalyst 3560-E Series Switches",
+                        "type": "string"
+                    },
+                    "productId": {
+                        "default": "",
+                        "description": "The Cisco Product ID (PID) of the hardware.",
+                        "type": "string"
+                    },
+                    "productType": {
+                        "default": "",
+                        "description": "The Cisco Product Type in COLD of the hardware.  Values usually come from MDF.",
+                        "example": "Metro Ethernet Switches",
+                        "type": "string"
+                    },
+                    "serialNumber": {
+                        "default": "",
+                        "description": "The serial number of the hardware.",
+                        "type": "string"
+                    },
+                    "serialNumberStatus": {
+                        "default": "",
+                        "description": "The validation status of the serial number of the hardware.  VALID means the SN was found in Cisco MFG or Contract DB.  INVALID means the SN was not found in either of those DBs.  UNKNOWN means the SN validation has been completed.  N/A means the SN is null, so validation is not applicable.",
+                        "type": "string"
+                    },
+                    "slot": {
+                        "default": "",
+                        "description": "The slot where a hardware component is located in a chassis.",
+                        "example": "1/1/0",
+                        "type": "string"
+                    },
+                    "swVersion": {
+                        "default": "",
+                        "description": "The Software Version of the device.",
+                        "example": "15.1(4)M4",
+                        "type": "string"
+                    },
+                    "tan": {
+                        "default": "",
+                        "description": "The Top Assembly Number (TAN) of the hardware.",
+                        "example": "800-25952-06",
+                        "type": "string"
+                    },
+                    "tanRev": {
+                        "default": "",
+                        "description": "The Top Assembly Number (TAN) Revision of the hardware.",
+                        "example": "A0",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CBPDetails": {
+                "properties": {
+                    "bpNuggetId": {
+                        "description": "The internal Config BP Nugget ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpRuleId": {
+                        "description": "The internal Config BP Rule ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "configSource": {
+                        "default": "",
+                        "description": "The source of a Configuration file.  The primary source will be \"STANDARD\".  But in some devices, it might be \"CONTEXT\" or \"ADMIN\".",
+                        "example": "STANDARD",
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CBPRules": {
+                "properties": {
+                    "bpCaveat": {
+                        "default": "",
+                        "description": "The Caveat associated with a Config BP Rule.",
+                        "type": "string"
+                    },
+                    "bpCorrectiveAction": {
+                        "default": "",
+                        "description": "The Corrective Action associated with a Config BP Rule.",
+                        "type": "string"
+                    },
+                    "bpDescription": {
+                        "default": "",
+                        "description": "The Description associated with a Config BP Rule.",
+                        "type": "string"
+                    },
+                    "bpNuggetId": {
+                        "description": "The internal Config BP Nugget ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpPrimaryTechnology": {
+                        "default": "",
+                        "description": "The Primary Technology associated with a Config BP Rule.",
+                        "example": "*LAN Switching",
+                        "type": "string"
+                    },
+                    "bpRecommendation": {
+                        "default": "",
+                        "description": "The Recommendation associated with a Config BP Rule.",
+                        "type": "string"
+                    },
+                    "bpRisk": {
+                        "default": "",
+                        "description": "The Risk associated with a Config BP Rule.  Valid values include: High, Medium, Low.",
+                        "type": "string"
+                    },
+                    "bpRuleId": {
+                        "description": "The internal Config BP Rule ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpSecondaryTechnology": {
+                        "default": "",
+                        "description": "The Secondary Technologies associated with a Config BP Rule.  Can be multiple values separated with commas.",
+                        "example": "*Security and VPN",
+                        "type": "string"
+                    },
+                    "bpTitle": {
+                        "default": "",
+                        "description": "The Config BP exception headline / title.",
+                        "type": "string"
+                    },
+                    "createDate": {
+                        "description": "The date the record or rule was created in NP database.  For devices, a new record is created whenever a unique name+sysobjectid combination is seen in the collector.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "updateDate": {
+                        "description": "The timestamp when the data or rule was last updated.",
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CBPRulesReferences": {
+                "properties": {
+                    "bpRuleId": {
+                        "description": "The internal Config BP Rule ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpUrl": {
+                        "default": "",
+                        "description": "The Config BP reference URL.  Any rule can have 1 or more reference URLs.",
+                        "type": "string"
+                    },
+                    "bpUrlTitle": {
+                        "default": "",
+                        "description": "The Config BP reference URL Title associated with bpUrl.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CBPSummary": {
+                "properties": {
+                    "bpNuggetId": {
+                        "description": "The internal Config BP Nugget ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpPrimaryTechnology": {
+                        "default": "",
+                        "description": "The Primary Technology associated with a Config BP Rule.",
+                        "example": "*LAN Switching",
+                        "type": "string"
+                    },
+                    "bpRisk": {
+                        "default": "",
+                        "description": "The Risk associated with a Config BP Rule.  Valid values include: High, Medium, Low.",
+                        "type": "string"
+                    },
+                    "bpRuleId": {
+                        "description": "The internal Config BP Rule ID from the AI-X system.  Used to cross-reference with other API results.",
+                        "type": "integer"
+                    },
+                    "bpSecondaryTechnology": {
+                        "default": "",
+                        "description": "The Secondary Technologies associated with a Config BP Rule.  Can be multiple values separated with commas.",
+                        "example": "*Security and VPN",
+                        "type": "string"
+                    },
+                    "bpTitle": {
+                        "default": "",
+                        "description": "The Config BP exception headline / title.",
+                        "type": "string"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "totalDevices": {
+                        "description": "The number of unique matching devices in summary APIs.  For Custom Config and BP, this is the number of devices with exceptions.  For Feature, this is the number of devices with the feature match.  For tracks, this is the total number of devices in the track.",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "Device": {
+                "properties": {
+                    "collector": {
+                        "default": "",
+                        "description": "The collector identifier, which can be either a 4 character collectorid or the applianceid.",
+                        "type": "string"
+                    },
+                    "configRegister": {
+                        "default": "",
+                        "description": "The Configuration register of the device.",
+                        "example": "8450",
+                        "type": "string"
+                    },
+                    "configStatus": {
+                        "default": "",
+                        "description": "The status of Configuration collection.  Completed means the config was successfully collected.  NotAvailable means the config was not collected.  NotSupported means the device does not support collection of an ASCii config via CLI.",
+                        "example": "Completed",
+                        "type": "string"
+                    },
+                    "configTime": {
+                        "description": "The time when the collector last successfully collected the configuration from the device.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "createDate": {
+                        "description": "The date the record or rule was created in NP database.  For devices, a new record is created whenever a unique name+sysobjectid combination is seen in the collector.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceIp": {
+                        "default": "",
+                        "description": "The management IP address of the device.",
+                        "example": "172.21.1.1",
+                        "type": "string"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "deviceStatus": {
+                        "default": "",
+                        "description": "The status of the device as reported by the collector.  Usually will be either ACTIVE or DEVICE NOT REACHABLE.",
+                        "type": "string"
+                    },
+                    "deviceSysName": {
+                        "default": "",
+                        "description": "The hostname (SNMP sysName) of the device.  It will be fully-qualified name, if domain name is set on the device.",
+                        "example": "router.cisco.com",
+                        "type": "string"
+                    },
+                    "deviceType": {
+                        "default": "",
+                        "description": "The type of the device.  Values include Managed Chassis, Managed Multi-Chassis, SDR, Contexts, and IOS-XR Admin",
+                        "example": "Managed Chassis",
+                        "type": "string"
+                    },
+                    "featureSetdesc": {
+                        "default": "",
+                        "description": "The name of the software feature set running on the device.  This data is primarily available for IOS.",
+                        "type": "string"
+                    },
+                    "imageName": {
+                        "default": "",
+                        "description": "The Image Name of the software on the Network Element.",
+                        "type": "string"
+                    },
+                    "inSeedFile": {
+                        "description": "Indicates whether the device is in a collector seedfile (true) or has been logically created by NP (false).  This is important for some KPI measurements to be accurate.",
+                        "type": "boolean"
+                    },
+                    "inventoryStatus": {
+                        "default": "",
+                        "description": "The status of Inventory collection.  Completed means some SNMP inventory was successfully collected.  NotAvailable means SNMP inventory was not collected.  NotSupported means the device was not in CSPC to be collected.",
+                        "example": "Completed",
+                        "type": "string"
+                    },
+                    "inventoryTime": {
+                        "description": "The time when the collector last successfully collected inventory from the device.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "ipAddress": {
+                        "default": "",
+                        "description": "An IPv4 Address.",
+                        "example": "172.16.1.1",
+                        "type": "string"
+                    },
+                    "lastReset": {
+                        "description": "The date timestamp of the last reset of the device as reported by the show version command.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "productFamily": {
+                        "default": "",
+                        "description": "The Cisco Product Family of the hardware.  Values come from MDF for Chassis.",
+                        "example": "Cisco Catalyst 3560-E Series Switches",
+                        "type": "string"
+                    },
+                    "productId": {
+                        "default": "",
+                        "description": "The Cisco Product ID (PID) of the hardware.",
+                        "type": "string"
+                    },
+                    "productType": {
+                        "default": "",
+                        "description": "The Cisco Product Type in COLD of the hardware.  Values usually come from MDF.",
+                        "example": "Metro Ethernet Switches",
+                        "type": "string"
+                    },
+                    "resetReason": {
+                        "default": "",
+                        "description": "The reason for the last system reset as reported in the show version output.",
+                        "type": "string"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "swVersion": {
+                        "default": "",
+                        "description": "The Software Version of the device.",
+                        "example": "15.1(4)M4",
+                        "type": "string"
+                    },
+                    "sysContact": {
+                        "default": "",
+                        "description": "The SNMP sysContact of the device which is populated in most devices using a configuration command.",
+                        "type": "string"
+                    },
+                    "sysDescription": {
+                        "default": "",
+                        "description": "The SNMP system description from the device.",
+                        "type": "string"
+                    },
+                    "sysLocation": {
+                        "default": "",
+                        "description": "The SNMP sysLocation of the device which is populated in most devices using a configuration command.",
+                        "type": "string"
+                    },
+                    "sysObjectId": {
+                        "default": "",
+                        "description": "The SNMP sysObjectID of the device.",
+                        "type": "string"
+                    },
+                    "userField1": {
+                        "default": "",
+                        "description": "The user field1 value populated in the collector seedfile.",
+                        "type": "string"
+                    },
+                    "userField2": {
+                        "default": "",
+                        "description": "The user field2 value populated in the collector seedfile.",
+                        "type": "string"
+                    },
+                    "userField3": {
+                        "default": "",
+                        "description": "The user field3 value populated in the collector seedfile.",
+                        "type": "string"
+                    },
+                    "userField4": {
+                        "default": "",
+                        "description": "The user field4 value populated in the collector seedfile.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Error": {
+                "properties": {
+                    "message": {
+                        "default": "",
+                        "description": "Error message",
+                        "type": "string"
+                    },
+                    "trackingId": {
+                        "default": "",
+                        "description": "Tracking ID for troubleshooting",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "FNBulletins": {
+                "properties": {
+                    "bulletinFirstPublished": {
+                        "default": "",
+                        "description": "The date when the bulletin was first published to Cisco.com.  Most API calls will allow Regex input for this field.",
+                        "type": "string"
+                    },
+                    "bulletinLastUpdated": {
+                        "description": "The date when the bulletin was last updated on Cisco.com.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "bulletinMappingCaveat": {
+                        "default": "",
+                        "description": "The Bulletin Mapping Caveat gives any explanations why the automation may need additional review by the customer.",
+                        "type": "string"
+                    },
+                    "bulletinTitle": {
+                        "default": "",
+                        "description": "The Cisco.com Title/Headline for the bulletin.",
+                        "example": "Cisco IOS XR Software Release 4.0",
+                        "type": "string"
+                    },
+                    "bulletinUrl": {
+                        "default": "",
+                        "description": "The Cisco.com URL for the bulletin.",
+                        "type": "string"
+                    },
+                    "fieldNoticeId": {
+                        "default": "",
+                        "description": "Field Notice ID number.",
+                        "type": "string"
+                    },
+                    "fnType": {
+                        "default": "",
+                        "description": "Type of Field Notice as defined from PLATO.  Valid values include: hardware, software, other",
+                        "type": "string"
+                    },
+                    "problemDescription": {
+                        "default": "",
+                        "description": "The description of the problem on a Cisco bulletin.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "HWEOX": {
+                "properties": {
+                    "currentEoxMilestone": {
+                        "default": "",
+                        "description": "The current end-of-life milestone as calculated during last NP profile.  If more than one milestone falls on the same date, the returned value will be a comma-separated list.",
+                        "example": "EoSale",
+                        "type": "string"
+                    },
+                    "currentEoxMilestoneDate": {
+                        "description": "The date associated with the current end-of-life milestone.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "hwEoxId": {
+                        "description": "Internal hardware end-of-life identifier to allow join with master hw_eox_bulletins API.",
+                        "type": "integer"
+                    },
+                    "nextEoxMilestone": {
+                        "default": "",
+                        "description": "The next end-of-life milestone that is coming up as calculated during last NP profile.  If more than one milestone falls on the same date, the returned value will be a comma-separated list.  If the device is already LDoS it will not have an next milestone.",
+                        "example": "LDoS",
+                        "type": "string"
+                    },
+                    "nextEoxMilestoneDate": {
+                        "description": "The date associated with the next end-of-life milestone.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "physicalElementId": {
+                        "description": "The unique ID in NP for a specific piece of hardware.",
+                        "example": 139163375,
+                        "type": "integer"
+                    },
+                    "physicalType": {
+                        "default": "",
+                        "description": "The physical type of the hardware.  Valid values are: Chassis, Module, Power Supply, Fan.",
+                        "example": "Chassis",
+                        "type": "string"
+                    },
+                    "productId": {
+                        "default": "",
+                        "description": "The Cisco Product ID (PID) of the hardware.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "HWEOXBulletins": {
+                "properties": {
+                    "bulletinNumber": {
+                        "default": "",
+                        "description": "The Cisco.com bulletin number for an End-of-Life bulletin or Field Notice.",
+                        "example": "EOL9958",
+                        "type": "string"
+                    },
+                    "bulletinTitle": {
+                        "default": "",
+                        "description": "The Cisco.com Title/Headline for the bulletin.",
+                        "example": "Cisco IOS XR Software Release 4.0",
+                        "type": "string"
+                    },
+                    "bulletinUrl": {
+                        "default": "",
+                        "description": "The Cisco.com URL for the bulletin.",
+                        "type": "string"
+                    },
+                    "eoLifeAnnouncementDate": {
+                        "description": "The End-of-Life Announcement (Announced) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoNewServiceAttachDate": {
+                        "description": "The End of New Service Attachment Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoRoutineFailureAnalysisDate": {
+                        "description": "The End of Routine Failure Analysis Date (EoRFA) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSaleDate": {
+                        "description": "The End-of-Sale (EoSale) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSecurityVulSupportDate": {
+                        "description": "The End of Vulnerability/Security Support (EoVSS) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSoftwareContractRenewalDate": {
+                        "description": "The End of Service Contract Renewal (EoSCR) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSwMaintenanceReleasesDate": {
+                        "description": "The End of SW Maintenance Releases (EoSWM) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "hwEoxId": {
+                        "description": "Internal hardware end-of-life identifier to allow join with master hw_eox_bulletins API.",
+                        "type": "integer"
+                    },
+                    "lastDateOfSupport": {
+                        "description": "The Last Date of Support (LDoS).",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "lastShipDate": {
+                        "description": "The Last Ship Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "productId": {
+                        "default": "",
+                        "description": "The Cisco Product ID (PID) of the hardware.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PSIRTBulletins": {
+                "properties": {
+                    "bulletinFirstPublished": {
+                        "default": "",
+                        "description": "The date when the bulletin was first published to Cisco.com.  Most API calls will allow Regex input for this field.",
+                        "type": "string"
+                    },
+                    "bulletinLastUpdated": {
+                        "description": "The date when the bulletin was last updated on Cisco.com.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "bulletinMappingCaveat": {
+                        "default": "",
+                        "description": "The Bulletin Mapping Caveat gives any explanations why the automation may need additional review by the customer.",
+                        "type": "string"
+                    },
+                    "bulletinSummary": {
+                        "default": "",
+                        "description": "The Summary of a Cisco.com bulletin.",
+                        "type": "string"
+                    },
+                    "bulletinTitle": {
+                        "default": "",
+                        "description": "The Cisco.com Title/Headline for the bulletin.",
+                        "example": "Cisco IOS XR Software Release 4.0",
+                        "type": "string"
+                    },
+                    "bulletinUrl": {
+                        "default": "",
+                        "description": "The Cisco.com URL for the bulletin.",
+                        "type": "string"
+                    },
+                    "bulletinVersion": {
+                        "default": "",
+                        "description": "The version # of the Cisco.com bulletin.",
+                        "example": "1.1",
+                        "type": "string"
+                    },
+                    "ciscoBugIds": {
+                        "default": "",
+                        "description": "Comma-separated list of Cisco Bug IDs.",
+                        "type": "string"
+                    },
+                    "cveId": {
+                        "default": "",
+                        "description": "Common Vulnerabilities and Exposures (CVE) Identifier",
+                        "example": "CVE-2016-6355",
+                        "type": "string"
+                    },
+                    "cvssBase": {
+                        "default": "",
+                        "description": "Common Vulnerability Scoring System (CVSS) Base Score",
+                        "example": "7.8",
+                        "type": "string"
+                    },
+                    "cvssTemporal": {
+                        "default": "",
+                        "description": "Common Vulnerability Scoring System (CVSS) Temporal Score",
+                        "example": "5",
+                        "type": "string"
+                    },
+                    "psirtAdvisoryId": {
+                        "default": "",
+                        "description": "The Advisory ID of a PSIRT as seen on Cisco.com.",
+                        "example": "cisco-sa-20150325-mdns",
+                        "type": "string"
+                    },
+                    "psirtColdId": {
+                        "description": "The internal COLD ID for a PSIRT.  This is useful for joining multiple data sources.",
+                        "type": "integer"
+                    },
+                    "sir": {
+                        "default": "",
+                        "description": "The Security Impact Rating (SIR) for Cisco PSIRTs.",
+                        "example": "Critical",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "SWEOXBulletins": {
+                "properties": {
+                    "bulletinNumber": {
+                        "default": "",
+                        "description": "The Cisco.com bulletin number for an End-of-Life bulletin or Field Notice.",
+                        "example": "EOL9958",
+                        "type": "string"
+                    },
+                    "bulletinTitle": {
+                        "default": "",
+                        "description": "The Cisco.com Title/Headline for the bulletin.",
+                        "example": "Cisco IOS XR Software Release 4.0",
+                        "type": "string"
+                    },
+                    "bulletinUrl": {
+                        "default": "",
+                        "description": "The Cisco.com URL for the bulletin.",
+                        "type": "string"
+                    },
+                    "eoLifeAnnouncementDate": {
+                        "description": "The End-of-Life Announcement (Announced) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSaleDate": {
+                        "description": "The End-of-Sale (EoSale) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSecurityVulSupportDate": {
+                        "description": "The End of Vulnerability/Security Support (EoVSS) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "eoSwMaintenanceReleasesDate": {
+                        "description": "The End of SW Maintenance Releases (EoSWM) Date.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "lastDateOfSupport": {
+                        "description": "The Last Date of Support (LDoS).",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "swEoxId": {
+                        "description": "Internal software end-of-life identifier to allow join with master sw_eox_bulletins API.",
+                        "type": "integer"
+                    },
+                    "swMaintenanceVersion": {
+                        "default": "",
+                        "description": "The maintenance version portion of the software version.  For example, in 12.4(21), it is \"21\"",
+                        "example": "21",
+                        "type": "string"
+                    },
+                    "swMajorVersion": {
+                        "default": "",
+                        "description": "The major version portion of the software version.",
+                        "example": "15.2",
+                        "type": "string"
+                    },
+                    "swTrain": {
+                        "default": "",
+                        "description": "The Software Train, typically only applies to IOS.",
+                        "example": "SXF",
+                        "type": "string"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "collectorModel": {
+                "properties": {
+                    "applianceId": {
+                        "default": "",
+                        "description": "The id of the collector appliance",
+                        "type": "string"
+                    },
+                    "collector": {
+                        "default": "",
+                        "description": "The collector identifier, which can be either a 4 character collectorid or the applianceid.",
+                        "type": "string"
+                    },
+                    "collectorStatus": {
+                        "default": "",
+                        "description": "Collector status",
+                        "type": "string"
+                    },
+                    "collectorVersion": {
+                        "default": "",
+                        "description": "Collector version",
+                        "type": "string"
+                    },
+                    "expectedUploadInterval": {
+                        "description": "Expected collection interval in days",
+                        "type": "integer"
+                    },
+                    "lastUploadComplete": {
+                        "description": "The date timestamp of the last completed collection for this collector",
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "complianceModel": {
+                "properties": {
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "smuPieType": {
+                        "description": "The status of the SMU or PIE, which is either Active or Committed",
+                        "example": "Active",
+                        "type": "string"
+                    },
+                    "swName": {
+                        "description": "The Name of the Software running on the NP Network Element.  For System SW, the value is the Image Name.  For PIE it is the package name and for SMU the SMU name.",
+                        "example": "asr9k-p-4.2.3.CSCtz41749-1.0.0",
+                        "type": "string"
+                    },
+                    "swRole": {
+                        "description": "The Role of the Software running on the NP Network Element.  Values include SYSTEM, PKG, SMU",
+                        "example": "SMU",
+                        "type": "string"
+                    },
+                    "trackDeviceSmuPieAction": {
+                        "description": "Action to take for a specific SMU/PIE for a device.  \"Add\" means the SMU/PIE needs to be installed on the device to make it compliant.  \"Delete\" means the SMU/PIE needs to be removed from the device to make it compliant.  \"None\" means no action needs to be taken.",
+                        "example": "Add",
+                        "type": "string"
+                    },
+                    "trackDeviceSmuPieCompliant": {
+                        "description": "Compliance status for a specific SMU/PIE for a device. \"Compliant\" means the SMU/PIE matches the recommendation.  \"Non-Compliant\" means the SMU/PIE does not match the recommended list.  See the action field for steps to take.  \"Extra\" means the SMU/PIE isn't part of the recommended list, but that is okay because exact match isn't being used.",
+                        "example": "Compliant",
+                        "type": "string"
+                    },
+                    "trackId": {
+                        "description": "Internal NP Software Track identifier.  This is needed to join between various track API results.",
+                        "type": "integer"
+                    },
+                    "trackName": {
+                        "description": "NP Software Track Name.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "contractBasePID": {
+                "properties": {
+                    "basePid": {
+                        "default": "",
+                        "description": "Base or manufacturing product identifiers related to the specified serial number.",
+                        "maxLength": 20,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "crashRisk": {
+                "properties": {
+                    "ciscoMlEtrees": {
+                        "type": "number"
+                    },
+                    "ciscoMlKmeans": {
+                        "type": "number"
+                    },
+                    "ciscoMlLatent": {
+                        "type": "number"
+                    },
+                    "ciscoMlNeighbors": {
+                        "type": "number"
+                    },
+                    "ciscoMlNeuralnets": {
+                        "type": "number"
+                    },
+                    "ciscoMlTopics": {
+                        "type": "number"
+                    },
+                    "ciscoMlTotal": {
+                        "type": "number"
+                    },
+                    "deviceHigh": {
+                        "type": "number"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceLow": {
+                        "type": "number"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "deviceRisk": {
+                        "type": "number"
+                    },
+                    "globalRiskRank": {
+                        "type": "string"
+                    },
+                    "productFamily": {
+                        "default": "",
+                        "description": "The Cisco Product Family of the hardware.  Values come from MDF for Chassis.",
+                        "example": "Cisco Catalyst 3560-E Series Switches",
+                        "type": "string"
+                    },
+                    "productId": {
+                        "default": "",
+                        "description": "The Cisco Product ID (PID) of the hardware.",
+                        "type": "string"
+                    },
+                    "version": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "feedbackModel": {
+                "properties": {
+                    "app": {
+                        "default": "",
+                        "description": "The name of the app related to the feedback",
+                        "type": "string"
+                    },
+                    "email": {
+                        "default": "",
+                        "description": "The email address of the user",
+                        "type": "string"
+                    },
+                    "feedback": {
+                        "default": "",
+                        "description": "The feedback, freeform text",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "The id in the database",
+                        "type": "integer"
+                    },
+                    "rating": {
+                        "description": "The feedback rating, out of 5",
+                        "type": "integer"
+                    },
+                    "screen": {
+                        "default": "",
+                        "description": "The name of the screen view within the app  related to the feedback",
+                        "type": "string"
+                    },
+                    "time": {
+                        "description": "DateTime of insertion",
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "fieldNotices": {
+                "properties": {
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "fieldNoticeId": {
+                        "default": "",
+                        "description": "Field Notice ID number.",
+                        "type": "string"
+                    },
+                    "matchConfidence": {
+                        "default": "",
+                        "description": "The match confidence result from PAS.  Valid values include: Vulnerable, Potentially Vulnerable, Not Vulnerable.",
+                        "type": "string"
+                    },
+                    "matchConfidenceReason": {
+                        "default": "",
+                        "description": "The reason behind the match confidence result from PAS.  Explains why you are vulnerable or not vulnerable or what data is missing to cause a potentially vulnerable result.  PAS value is enhanced in NP for readability.",
+                        "type": "string"
+                    },
+                    "physicalElementId": {
+                        "description": "The unique ID in NP for a specific piece of hardware.",
+                        "example": 139163375,
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "itemCount": {
+                "properties": {
+                    "count": {
+                        "description": "The total amount of items",
+                        "example": 123,
+                        "type": "integer"
+                    },
+                    "date": {
+                        "description": "Date of insertion",
+                        "example": "2010-01-01",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "tableName": {
+                        "default": "",
+                        "description": "The name of table",
+                        "example": "assets",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "orderablePid": {
+                "properties": {
+                    "itemDescription": {
+                        "default": "",
+                        "description": "Orderable product description for the specified serial number",
+                        "example": "Standard Airflow pack:N2K-C2248TP-E-1GE, 2 AC PS, 1Fan",
+                        "maxLength": 123,
+                        "type": "string"
+                    },
+                    "itemPosition": {
+                        "default": "",
+                        "description": "Orderable product position for the specified serial number",
+                        "example": "C",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "itemType": {
+                        "default": "",
+                        "description": "Orderable product type for the specified serial number",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "orderablePid": {
+                        "default": "",
+                        "description": "Orderable product identifiers for the specified serial number",
+                        "example": "N2248TP-E-FA-BUN",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "pillarCode": {
+                        "default": "",
+                        "description": "Orderable product identifiers for the specified serial number",
+                        "example": "1,2,3",
+                        "maxLength": 20,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "pageOfAssets": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/Asset"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCBPdetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CBPDetails"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCBPrules": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CBPRules"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCBPrulesreferences": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CBPRulesReferences"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCBPsummary": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/CBPSummary"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCollectors": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/collectorModel"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCountDataPoint": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/itemCount"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfCrashes": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/crashRisk"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfDevices": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/Device"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfFNBulletins": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/FNBulletins"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfFeedback": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/feedbackModel"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfFieldNotices": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/fieldNotices"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfHWEOX": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/HWEOX"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfHWEOXBulletins": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/HWEOXBulletins"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfPSIRTBulletins": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/PSIRTBulletins"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfResults": {
+                "properties": {
+                    "page": {
+                        "description": "Number of page of results",
+                        "type": "integer"
+                    },
+                    "pages": {
+                        "description": "Total number of pages of results",
+                        "type": "integer"
+                    },
+                    "perPage": {
+                        "description": "Number of items per page of results",
+                        "maximum": 2000,
+                        "type": "integer"
+                    },
+                    "total": {
+                        "description": "Total number of results",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "pageOfSWEOXBulletins": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/SWEOXBulletins"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfSecurityAdvisories": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/securityAdvisories"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfSerialNumberDetails": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/serialNumberDetails"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfSoftwareAlerts": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/softwareAlerts"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "pageOfSoftwareEOX": {
+                "allOf": [
+                    {
+                        "$ref": "#/components/schemas/pageOfResults"
+                    },
+                    {
+                        "properties": {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/components/schemas/softwareEOX"
+                                },
+                                "type": "array"
+                            }
+                        },
+                        "type": "object"
+                    }
+                ]
+            },
+            "recomendationsModel": {
+                "properties": {
+                    "swName": {
+                        "description": "The Name of the Software running on the NP Network Element.  For System SW, the value is the Image Name.  For PIE it is the package name and for SMU the SMU name.",
+                        "example": "asr9k-p-4.2.3.CSCtz41749-1.0.0",
+                        "type": "string"
+                    },
+                    "swRole": {
+                        "description": "The Role of the Software running on the NP Network Element.  Values include SYSTEM, PKG, SMU",
+                        "example": "SMU",
+                        "type": "string"
+                    },
+                    "trackId": {
+                        "description": "Internal NP Software Track identifier.  This is needed to join between various track API results.",
+                        "type": "integer"
+                    },
+                    "trackName": {
+                        "description": "NP Software Track Name.",
+                        "type": "string"
+                    },
+                    "trackRecHistory": {
+                        "description": "This field indicates recommendation history value of the track SMUs/PIEs.  \"Current\" is for the standard recommendation and should be used in most cases.  \"Previous1\" is for the previous recommendation.  \"Previous2\" is for the 2nd previous recommendation. \"Candidate\" is for the future candidate recommendation.",
+                        "example": "Current",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "securityAdvisories": {
+                "properties": {
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "matchConfidence": {
+                        "default": "",
+                        "description": "The match confidence result from PAS.  Valid values include: Vulnerable, Potentially Vulnerable, Not Vulnerable.",
+                        "type": "string"
+                    },
+                    "matchConfidenceReason": {
+                        "default": "",
+                        "description": "The reason behind the match confidence result from PAS.  Explains why you are vulnerable or not vulnerable or what data is missing to cause a potentially vulnerable result.  PAS value is enhanced in NP for readability.",
+                        "type": "string"
+                    },
+                    "psirtColdId": {
+                        "description": "The internal COLD ID for a PSIRT.  This is useful for joining multiple data sources.",
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "serialNumberDetails": {
+                "properties": {
+                    "basePidList": {
+                        "items": {
+                            "$ref": "#/components/schemas/contractBasePID"
+                        },
+                        "type": "array"
+                    },
+                    "contractSiteAddress1": {
+                        "default": "",
+                        "description": "Address field for the contract install site.",
+                        "example": "170 WEST TASMAN DR.",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "contractSiteCity": {
+                        "default": "",
+                        "description": "City field for the contract install site; for example, ",
+                        "example": "SAN JOSE.",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "contractSiteCountry": {
+                        "default": "",
+                        "description": "Country field for the contract install site",
+                        "example": "US.",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "contractSiteCustomerName": {
+                        "default": "",
+                        "description": "Customer name associated to the contract install site.",
+                        "example": "CISCO SYSTEMS, INC.",
+                        "maxLength": 100,
+                        "type": "string"
+                    },
+                    "contractSiteStateProvince": {
+                        "default": "",
+                        "description": "State field for the contract install site",
+                        "example": "CA.",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "coveredProductLineEndDate": {
+                        "description": "End date of the covered product line in the following format: YYYY-MM-DD",
+                        "example": "2010-01-01",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "id": {
+                        "description": "Number of the record in the results.",
+                        "example": 12345,
+                        "type": "integer"
+                    },
+                    "isCovered": {
+                        "default": "NO",
+                        "description": "Indicates whether the specified serial number is covered by a service contract; one of the following values: YES or NO. If the serial number is covered by a service contract, the value is Yes.",
+                        "enum": [
+                            "YES",
+                            "NO"
+                        ],
+                        "example": "YES",
+                        "maxLength": 3,
+                        "type": "string"
+                    },
+                    "orderablePidList": {
+                        "items": {
+                            "$ref": "#/components/schemas/orderablePid"
+                        },
+                        "type": "array"
+                    },
+                    "parentSrNo": {
+                        "default": "",
+                        "description": "Parent serial number. The value of parent_sr_no will be the same as the value for sr_no if the item is a MAJOR item.",
+                        "maxLength": 40,
+                        "type": "string"
+                    },
+                    "serviceContractNumber": {
+                        "default": "",
+                        "description": "Service contract number",
+                        "example": "1234567, 2345678",
+                        "maxLength": 200,
+                        "type": "string"
+                    },
+                    "serviceLineDescr": {
+                        "default": "",
+                        "description": "Description of the service type",
+                        "example": "SMARTnet 24x7x4",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "srNo": {
+                        "default": "",
+                        "description": "Serial number of the device.",
+                        "maxLength": 40,
+                        "type": "string"
+                    },
+                    "warrantyEndDate": {
+                        "description": "End date of the warranty for the specified serial number in the following format: YYYY-MM-DD",
+                        "example": "2010-01-01",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "warrantyType": {
+                        "default": "",
+                        "description": "Warranty service type",
+                        "example": "WARR-3YR-HW-90D-SW.",
+                        "maxLength": 20,
+                        "type": "string"
+                    },
+                    "warrantyTypeDescription": {
+                        "default": "",
+                        "description": "Link to the description of the warranty type.",
+                        "maxLength": 100,
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "softwareAlerts": {
+                "properties": {
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "imageName": {
+                        "default": "",
+                        "description": "The Image Name of the software on the Network Element.",
+                        "type": "string"
+                    },
+                    "swAlertType": {
+                        "default": "",
+                        "description": "The type of Software Alert on the device.  Valid values include SA for Software Advisory and DF for Deferral.",
+                        "example": "DF",
+                        "type": "string"
+                    },
+                    "swAlertUrl": {
+                        "default": "",
+                        "description": "The Cisco.com URL with details for a specific software advisory or deferral.",
+                        "example": "http://www.cisco.com/web/software/DefTracker/280805679/DT/ac102516.html",
+                        "type": "string"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "swVersion": {
+                        "default": "",
+                        "description": "The Software Version of the device.",
+                        "example": "15.1(4)M4",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "softwareEOX": {
+                "properties": {
+                    "currentEoxMilestone": {
+                        "default": "",
+                        "description": "The current end-of-life milestone as calculated during last NP profile.  If more than one milestone falls on the same date, the returned value will be a comma-separated list.",
+                        "example": "EoSale",
+                        "type": "string"
+                    },
+                    "currentEoxMilestoneDate": {
+                        "description": "The date associated with the current end-of-life milestone.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "deviceId": {
+                        "description": "The unique ID of the NP NetworkElement/Device.",
+                        "example": 22345640,
+                        "type": "integer"
+                    },
+                    "deviceName": {
+                        "default": "",
+                        "description": "The Network Element Name of the device.  When used as input, it can include % as wildcard.",
+                        "example": "router%",
+                        "type": "string"
+                    },
+                    "nexteoxMilestone": {
+                        "default": "",
+                        "description": "The next end-of-life milestone that is coming up as calculated during last NP profile.  If more than one milestone falls on the same date, the returned value will be a comma-separated list.  If the device is already LDoS it will not have an next milestone.",
+                        "example": "LDoS",
+                        "type": "string"
+                    },
+                    "nexteoxMilestoneDate": {
+                        "description": "The date associated with the next end-of-life milestone.",
+                        "format": "date-time",
+                        "type": "string"
+                    },
+                    "swEoxId": {
+                        "description": "Internal software end-of-life identifier to allow join with master sw_eox_bulletins API.",
+                        "type": "integer"
+                    },
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "swVersion": {
+                        "default": "",
+                        "description": "The Software Version of the device.",
+                        "example": "15.1(4)M4",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "summaryModel": {
+                "properties": {
+                    "swType": {
+                        "default": "",
+                        "description": "The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.",
+                        "example": "IOS-XE",
+                        "type": "string"
+                    },
+                    "trackCandidateSwVersion": {
+                        "description": "The candidate/future recommended standard version for the NP Software Track.",
+                        "type": "string"
+                    },
+                    "trackComments": {
+                        "description": "NP Software Track Recommendation and Planning Comments.",
+                        "type": "string"
+                    },
+                    "trackCompliantDevices": {
+                        "description": "Total number of devices in the NP Software Track that are running the Standard Recommended Version.",
+                        "type": "integer"
+                    },
+                    "trackDescription": {
+                        "description": "NP Software Track Description.",
+                        "type": "string"
+                    },
+                    "trackId": {
+                        "description": "Internal NP Software Track identifier.  This is needed to join between various track API results.",
+                        "type": "integer"
+                    },
+                    "trackLastModifiedDate": {
+                        "description": "The date when the software track was last edited or modified in Network Profile.",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "trackName": {
+                        "description": "NP Software Track Name.",
+                        "type": "string"
+                    },
+                    "trackNonCompliantDevices": {
+                        "description": "Total number of devices in the NP Software Track that are not running the Standard Recommended Version.",
+                        "type": "integer"
+                    },
+                    "trackPercentCompliant": {
+                        "description": "The percent of devices running the standard recommended version.  Formula is trackCompliantDevices/trackTotalDevices.",
+                        "type": "number"
+                    },
+                    "trackPercentFlexibleCompliant": {
+                        "description": "The percent of devices running the standard recommended version or one of the two previous recommended versions.  Formula is (trackCompliantDevices+trackPrevCompliantDevices)/trackTotalDevices.",
+                        "type": "number"
+                    },
+                    "trackPrev1PieCriteria": {
+                        "description": "The PIE matching criteria for the previous standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackPrev1SmuCriteria": {
+                        "description": "The SMU matching criteria for the previous standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackPrev2PieCriteria": {
+                        "description": "The PIE matching criteria for the 2nd previous standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackPrev2SmuCriteria": {
+                        "description": "The SMU matching criteria for the 2nd previous standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackPrevCompliantDevices": {
+                        "description": "Total number of devices in the NP Software Track that are running the Standard Recommended Version.",
+                        "type": "integer"
+                    },
+                    "trackPrevSwVersion1": {
+                        "description": "The previous recommended standard version for the NP Software Track.",
+                        "type": "string"
+                    },
+                    "trackPrevSwVersion2": {
+                        "description": "The 2nd previous recommended standard version for the NP Software Track.",
+                        "type": "string"
+                    },
+                    "trackRating": {
+                        "description": "The AS rating of the track compliance.  Results depend on whether account is using Absolute Compliance (default) or Flexible Compliance.  For Absolute, %Compliant 90 and above is Good, 60-90 is Fair, and below 60 is Poor.  For Flexible, it is the same thresholds, but %FlexibleCompliant is used.",
+                        "type": "string"
+                    },
+                    "trackRecommendationDate": {
+                        "description": "The date when the last software recommendation was made.  This is manually set by the user in the NP Software Track.  This is used to measure the age of the recommendation.",
+                        "format": "date",
+                        "type": "string"
+                    },
+                    "trackSmuCompliancePercent": {
+                        "description": "The overall compliance percentage of the devices to the recommended SMU list.  Extra SMUs are ignored for the calculation.",
+                        "type": "number"
+                    },
+                    "trackStandardPieCriteria": {
+                        "description": "The PIE matching criteria for the recommended standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackStandardSmuCount": {
+                        "description": "The number of SMUs in the Standard Recommendation for the track.",
+                        "type": "integer"
+                    },
+                    "trackStandardSmuCriteria": {
+                        "description": "The SMU matching criteria for the recommended standard version for the NP Software Track.  Valid values include:  Require Exact Match, Ignore For Conformance, Match but ignore extras",
+                        "example": "Require Exact Match",
+                        "type": "string"
+                    },
+                    "trackStandardSwVersion": {
+                        "description": "The current recommended standard version for the NP Software Track.",
+                        "type": "string"
+                    },
+                    "trackStatus": {
+                        "description": "The status of the code deployment, as defined in the NP Software Track.  Values include Fully Deployed, In Migration, etc.",
+                        "example": "Fully Deployed",
+                        "type": "string"
+                    },
+                    "trackTotalDevices": {
+                        "description": "Total number of devices in the NP Software Track.",
+                        "type": "integer"
+                    },
+                    "trackTotalSwVersions": {
+                        "description": "Total number of unique software versions in the NP Software Track.",
+                        "type": "integer"
+                    },
+                    "trackUpgradeReason": {
+                        "description": "The reason for the last change in software recommendation, as defined in the NP Software Track.  Values include New Software Implementation, Planned Maintenance, etc.",
+                        "example": "New Software Implementation",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "securitySchemes": {
+            "apikey": {
+                "in": "header",
+                "name": "x-api-key",
+                "type": "apiKey"
+            }
+        }
+    },
+    "info": {
+        "description": "This is an API service to get Cisco Business Critical Sservices (aka BCS) insights data. \n\nBCS insights are generated by applying Cisco Intellectual Capital rules on data cisco device data obtained via the Common Services Platform Collector (CSPC).\n\n## authentication\n\nall api calls must be authenticated using an apikey which was provided by Cisco. An api-key only gives access to a specific company's data.\n\nIt should be passed as a headers in the following form: `x-api-key: XXXXX` where XXXXX is the api-key.\n\n## customerid\n\nEvery API call also require to have a customerid passed in the URL, for test/demo purpose you may use customerid `280987866` which will yield demo data.\n\n## Bulk/Granular API\n\nThere are 2 types of APIs: Bulk/Granluar. \n\nThe bulk APIs (contain `bulk` in path) returns a large amount of consolidated data in a single call, it is ideal if one wants to ingest the data into a database for further analysis/automation. If you want to get all insights about all your devices this is the right choice.\n\nThe granular APIs (does not contain `bulk` in path) are more adapted to a use case where data is queried on the fly to draw a specific graph for example.  If you want to experiement with the data or create quick dashboards/graphs without  creating new tables in your ITSM this is the right choice.\n\n## Conditional requests\n\nFollowing RFC 7232, the `/customer` path (data APIs) supports the `Last-Modified` and `Etag` headers.\n\n`Last-Modified` is the HTTP timestamp of the last time some NP data were processed (if you have several collectors that will take the last time of the last upload), this is not the same time as the `lastuploadcomplete` we can see in the `/collectors/` API as NP takes time to process and enrich the data.  The data on this server are pushed at a later time with a maximum of 2 hours after NP finished processing the new collected data.\n\n`Etag` as defined in the RFC represent a has of the `Last-Modified` header, and `If-Match` or `If-None-Match` headers are supported on this server, you can query the API regularly for new data and only receive data when new data is availablle.\n\n",
+        "title": "BCS Insights APIs",
+        "version": "2.0"
+    },
+    "openapi": "3.0.3",
+    "paths": {
+        "/customer/{customerid}/bulk/alerts": {
+            "get": {
+                "description": "Returns combined inventory and alerts data for all devices.\n\nThe **bulk** APIs are different than the other APIs in the following aspects:\n- return a 302 redirect that is only valid 5 seconds and should be followed by the client. The 5 seconds are for accessing the url, once accessed it will be good until end of download.\n- the data is returned in [jsonlines](https://jsonlines.org/) format.\n\nIf the *try it out* feature fails for a bulk API:\n- it can be due to cookies, try in a private/incognito mode tab\n- try with curl: for example `curl 'https://demo.api.csco-bcs.com/v2/demo/customer/YYYYYY/bulk/alerts' --header 'x-api-key: XXXXXX' -L -o alerts.jsonl` where XXXXXX is your api-key and YYYYYY your customerid.",
+                "operationId": "get_bulk_inventory",
+                "responses": {
+                    "302": {
+                        "description": "Redirect URL to the actual data in the Location header."
+                    }
+                },
+                "tags": [
+                    "bulk"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/cbp/details": {
+            "get": {
+                "description": "CBP Rules details found per deviceid",
+                "operationId": "get_details",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCBPdetails"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "cbp"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/cbp/rules": {
+            "get": {
+                "description": "CBP Rules",
+                "operationId": "get_rules",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCBPrules"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "cbp"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/cbp/rulesReferences": {
+            "get": {
+                "description": "CBP Rules references found per deviceid",
+                "operationId": "get_rules_ref",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCBPrulesreferences"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "cbp"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/cbp/summary": {
+            "get": {
+                "description": "CBP aggregation",
+                "operationId": "get_summary",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCBPsummary"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "cbp"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/collectors": {
+            "get": {
+                "description": "List the collectors",
+                "operationId": "get_collectors",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCollectors"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "collectors"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/contract/serials": {
+            "get": {
+                "description": "Contract informations per serial number",
+                "operationId": "get_serials",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfSerialNumberDetails"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "contract"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/count/": {
+            "get": {
+                "description": "Returns the amount of data stored in DB, time series per day",
+                "operationId": "get_count",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Total days to look backward",
+                        "in": "query",
+                        "name": "days_backward",
+                        "schema": {
+                            "default": 90,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCountDataPoint"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "count"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/crashPrevention/crashRisk": {
+            "get": {
+                "description": "Listing all crash risks",
+                "operationId": "get_crash_risk",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCrashes"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "crashPrevention"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/crashPrevention/crashRiskCount": {
+            "get": {
+                "description": "Counting all crash risks per level",
+                "operationId": "get_crash_risk_count",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "crashPrevention"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/feedback": {
+            "get": {
+                "description": "Manage feedback",
+                "operationId": "get_feedback_root",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfFeedback"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "feedback"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "post": {
+                "description": "Manage feedback",
+                "operationId": "post_feedback_root",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "app": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "feedback": {
+                                        "type": "string"
+                                    },
+                                    "rating": {
+                                        "type": "integer"
+                                    },
+                                    "screen": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true,
+                    "x-originalParamName": "payload"
+                },
+                "responses": {
+                    "201": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/feedbackModel"
+                                }
+                            }
+                        },
+                        "description": "Created"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Missing args"
+                    }
+                },
+                "tags": [
+                    "feedback"
+                ]
+            }
+        },
+        "/customer/{customerid}/feedback/id/{feedback_id}": {
+            "delete": {
+                "description": "Manage feedback",
+                "operationId": "delete_feedback_id",
+                "responses": {
+                    "204": {
+                        "description": "Feedback deleted"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Feedback not found"
+                    }
+                },
+                "tags": [
+                    "feedback"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "path",
+                    "name": "feedback_id",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/inventory/assets": {
+            "get": {
+                "description": "Listing assets details (actual hardware, primary key physicalelementid, groupped by deviceid)",
+                "operationId": "get_assets",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"producttype\": \"LAN Switches\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{devicename,productid,producttype},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfAssets"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "inventory"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/inventory/assets/count": {
+            "get": {
+                "description": "Total assets count",
+                "operationId": "get_assets_count",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "inventory"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/inventory/devices": {
+            "get": {
+                "description": "Device informations (logical device with primary key deviceid)",
+                "operationId": "get_device_sum",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"producttype\": \"LAN Switches\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{devicename,productid,producttype},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfDevices"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "inventory"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/inventory/devices/count": {
+            "get": {
+                "description": "Total devices count",
+                "operationId": "get_device_sum_count",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "integer"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    }
+                },
+                "tags": [
+                    "inventory"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/fieldNotices": {
+            "get": {
+                "description": "Listing known field notices for devices (linked to devices by deviceid)",
+                "operationId": "get_fn",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfFieldNotices"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/fnBulletins": {
+            "get": {
+                "description": "Listing Field Notices Bulletins",
+                "operationId": "get_fn__bulletins",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfFNBulletins"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/hwEox": {
+            "get": {
+                "description": "Listing known hardware EOX for assets (linked to assets by physicalelementid)",
+                "operationId": "get_hweox",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfHWEOX"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/hwEoxBulletins": {
+            "get": {
+                "description": "Listing Hardware EOX Bulletins",
+                "operationId": "get_hweox__bulletins",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfHWEOXBulletins"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/psirt": {
+            "get": {
+                "description": "Listing known security advisories (PSIRT) for devices (linked to devices by deviceid).\u003cbr/\u003e Confidence is: \"Not Vulnerable, Vulnerable, Potentially Vulnerable\".",
+                "operationId": "get_psirt",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfSecurityAdvisories"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/psirtBulletins": {
+            "get": {
+                "description": "Listing PSIRT Bulletins",
+                "operationId": "get_psirt__bulletins",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfPSIRTBulletins"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/swAlerts": {
+            "get": {
+                "description": "Listing known software alerts for devices (linked to devices by deviceid)",
+                "operationId": "get_sw_alerts",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfSoftwareAlerts"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/swEox": {
+            "get": {
+                "description": "Listing known software EOX for devices (linked to devices by deviceid)",
+                "operationId": "get_sweox",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfSoftwareEOX"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/productAlerts/swEoxBulletins": {
+            "get": {
+                "description": "Listing Software EOX Bulletins",
+                "operationId": "get_sweox__bulletins",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfSWEOXBulletins"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "productAlerts"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/riskMitigation/crashCount": {
+            "get": {
+                "description": "Count crashes since days",
+                "operationId": "get_crash_count",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Days too look backward for counting",
+                        "in": "query",
+                        "name": "days",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCrashes"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "riskMitigation"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/riskMitigation/crashes": {
+            "get": {
+                "description": "Listing all crashes",
+                "operationId": "get_crashes",
+                "parameters": [
+                    {
+                        "description": "Query filter in JSON to search for specific fields. \u003cbr/\u003eExample: {\"physicaltype\":\"Module\"}",
+                        "in": "query",
+                        "name": "filter",
+                        "schema": {
+                            "default": "{}",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Mask filter to lower the amount of fields returned, comma separated values, nested field between brackets. \u003cbr/\u003eExample: items{physicaltype,currenteoxmilestone,currenteoxmilestonedate,productid}},page,pages,total",
+                        "in": "query",
+                        "name": "mask",
+                        "schema": {
+                            "default": "*",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Page number",
+                        "in": "query",
+                        "name": "page",
+                        "schema": {
+                            "default": 1,
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "description": "Results per page",
+                        "in": "query",
+                        "name": "perPage",
+                        "schema": {
+                            "default": 500,
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/pageOfCrashes"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "riskMitigation"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/softwareTrack/compliance": {
+            "get": {
+                "description": "Lists of compliances for devices",
+                "operationId": "get_compliance",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/complianceModel"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "softwareTrack"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/softwareTrack/recommendations": {
+            "get": {
+                "description": "Lists of recomendations for devices",
+                "operationId": "get_recomendations",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/recomendationsModel"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "softwareTrack"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "/customer/{customerid}/softwareTrack/summary": {
+            "get": {
+                "description": "Lists historic data which contains informations about software upgrades",
+                "operationId": "get_tracking_summary",
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/summaryModel"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "400": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        },
+                        "description": "Bad Request"
+                    }
+                },
+                "tags": [
+                    "softwareTrack"
+                ]
+            },
+            "parameters": [
+                {
+                    "in": "path",
+                    "name": "customerid",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ]
+        }
+    },
+    "security": [
+        {
+            "apikey": []
+        }
+    ],
+    "servers": [
+        {
+            "url": "https://://api.csco-bcs.com/v2"
+        }
+    ],
+    "tags": [
+        {
+            "description": "Retrieve data in bulk",
+            "name": "bulk"
+        },
+        {
+            "description": "APIs related to BCS inventory",
+            "name": "inventory"
+        },
+        {
+            "description": "APIs related to BCS product-alerts found in network",
+            "name": "productAlerts"
+        },
+        {
+            "description": "APIs related to device risk mitigation",
+            "name": "riskMitigation"
+        },
+        {
+            "description": "APIs related to device crash prevention",
+            "name": "crashPrevention"
+        },
+        {
+            "description": "APIs related to configuration best practice (CBP)",
+            "name": "cbp"
+        },
+        {
+            "description": "APIs related to tracking",
+            "name": "softwareTrack"
+        },
+        {
+            "description": "APIs related to contract data",
+            "name": "contract"
+        },
+        {
+            "description": "APIs related to BCS collectors",
+            "name": "collectors"
+        },
+        {
+            "description": "APIs related to time series data",
+            "name": "count"
+        },
+        {
+            "description": "APIs related to feedback collection",
+            "name": "feedback"
+        }
+    ]
+}
