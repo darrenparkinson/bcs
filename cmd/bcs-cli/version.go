@@ -4,7 +4,7 @@ package main
 var GitCommit string
 
 // Version holds the current release version.  Automation to be implemented.
-const Version = "0.0.1"
+const Version = "0.0.2"
 
 // VersionPrerelease holds the current pre-release version.  Automation to be implemented.
 const VersionPrerelease = ""
