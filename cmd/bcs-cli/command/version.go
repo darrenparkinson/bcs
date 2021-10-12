@@ -7,6 +7,8 @@ import (
 	"github.com/mitchellh/cli"
 )
 
+// VersionCommand is the top level struct for the cli VersionCommand.
+// It holds a reference to the cli.Ui for logging etc.
 type VersionCommand struct {
 	Revision          string
 	Version           string
@@ -14,10 +16,12 @@ type VersionCommand struct {
 	Ui                cli.Ui
 }
 
+// Help provies the help text for this command.
 func (c *VersionCommand) Help() string {
 	return ""
 }
 
+// Run provides the command functionality
 func (c *VersionCommand) Run(_ []string) int {
 	var versionString bytes.Buffer
 	fmt.Fprintf(&versionString, "bcs-cli v%s", c.Version)
@@ -33,6 +37,7 @@ func (c *VersionCommand) Run(_ []string) int {
 	return 0
 }
 
+// Synopsis provides the one liner
 func (c *VersionCommand) Synopsis() string {
 	return "Show version information."
 }

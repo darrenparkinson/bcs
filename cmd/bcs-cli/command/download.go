@@ -10,10 +10,13 @@ import (
 	"github.com/mitchellh/cli"
 )
 
+// DownloadCommand is the top level struct for the cli DownloadCommand.
+// It holds a reference to the cli.Ui for logging etc.
 type DownloadCommand struct {
 	Ui cli.Ui
 }
 
+// Help provies the help text for this command.
 func (c *DownloadCommand) Help() string {
 	helpText := `
 Usage: bcs-cli [global options] download [options]
@@ -34,6 +37,7 @@ Options:
 	return strings.TrimSpace(helpText)
 }
 
+// Run provides the command functionality
 func (c *DownloadCommand) Run(args []string) int {
 	var customerID, apikey, filename string
 	cmdFlags := flag.NewFlagSet("download", flag.ContinueOnError)
@@ -63,6 +67,7 @@ func (c *DownloadCommand) Run(args []string) int {
 	return 0
 }
 
+// Synopsis provides the one liner
 func (c *DownloadCommand) Synopsis() string {
 	return "Download raw data from the bulk endpoint and save as a file."
 }

@@ -17,20 +17,26 @@ import (
 // done - psirt_bulletin 353
 //
 
+// BulkTypeChecker enables us to deserialize only the type field from a jsonlines object from the bulk endpoint
+// in order to identify it's underlying type so that we can then unmarshal the remaining body appropriately.
 type BulkTypeChecker struct {
 	Type string `json:"type"`
 }
 
+// DateFormat represents the date only format provided in the Cisco results.
 const DateFormat = "2006-01-02"
 
+// Date represente a date provided in the Cisco results.
 type Date struct {
 	time.Time
 }
 
+// MarshalJSON will marshal the date format provided in the Cisco results.
 func (d Date) MarshalJSON() ([]byte, error) {
 	return json.Marshal(d.Time.Format(DateFormat))
 }
 
+// UnmarshalJSON will unmarshal the date format provided in the Cisco results.
 func (d *Date) UnmarshalJSON(data []byte) error {
 	var dateStr string
 	err := json.Unmarshal(data, &dateStr)
@@ -45,20 +51,26 @@ func (d *Date) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// String will return the date representation in the format provided by Cisco.
 func (d Date) String() string {
 	return d.Time.Format(DateFormat)
 }
 
+// DateTimeMinusTimezoneFormat represents the datetime field provided in the Cisco results which
+// they have chosen not to provide any timezone information for.
 const DateTimeMinusTimezoneFormat = "2006-01-02T15:04:05"
 
+// DateTime represents the datetime field in the Cisco results which has no timezone information.
 type DateTime struct {
 	time.Time
 }
 
+// MarshalJSON will marshal the datetime format provided in the Cisco results.
 func (d DateTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(d.Time.Format(DateTimeMinusTimezoneFormat))
 }
 
+// UnmarshalJSON will unmarshal the datetime format provided in the Cisco results.
 func (d *DateTime) UnmarshalJSON(data []byte) error {
 	var dateStr string
 	err := json.Unmarshal(data, &dateStr)
@@ -73,6 +85,7 @@ func (d *DateTime) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+// String will return the datetime representation in the format provided by Cisco.
 func (d DateTime) String() string {
 	return d.Time.Format(DateTimeMinusTimezoneFormat)
 }
@@ -176,7 +189,7 @@ type Device struct {
 	UserField4 *string `json:"userField4,omitempty"`
 }
 
-// SummaryModel defines model for summaryModel.
+// TrackSummary defines model for summaryModel.
 type TrackSummary struct {
 	// The Type of Software running on the NP Network Element.  Common values include IOS, IOS XR, IOS-XE, NX-OS, etc.
 	SwType *string `json:"swType,omitempty"`
@@ -326,7 +339,7 @@ type SWEOXBulletin struct {
 	SwType *string `json:"swType,omitempty"`
 }
 
-// HWEOXBulletins defines model for HWEOXBulletins.
+// HWEOXBulletin defines model for HWEOXBulletins.
 type HWEOXBulletin struct {
 	// The Cisco.com bulletin number for an End-of-Life bulletin or Field Notice.
 	BulletinNumber *string `json:"bulletinNumber,omitempty"`

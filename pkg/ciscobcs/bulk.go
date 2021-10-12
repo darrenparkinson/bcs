@@ -11,6 +11,14 @@ import (
 	"os"
 )
 
+// BulkResults holds various details from the bulk download, including
+// how many lines were parsed, how many of each type were parsed and
+// also slices of each type.  In addition any non-critical errors during
+// parsing are returned for you to enumerate and decide if you want
+// to do anything with them. Typically this is going to be errors relating
+// to unmarshalling etc., e.g. where non-standard dates types are used.
+// Finally, a list of unrecognised types is returned in case there are
+// additional types that we haven't received before.
 type BulkResults struct {
 	LineCount                  int
 	CountOfTypes               map[string]int
@@ -25,6 +33,7 @@ type BulkResults struct {
 	Errors                     []error
 }
 
+// Retrieve will make a bulk request and return a BulkResults item.
 func (s *BulkService) Retrieve(ctx context.Context, customerID string) (*BulkResults, error) {
 	url := fmt.Sprintf("%s/customer/%s/bulk/alerts", s.client.BaseURL, customerID)
 	req, err := http.NewRequest("GET", url, nil)
@@ -34,6 +43,9 @@ func (s *BulkService) Retrieve(ctx context.Context, customerID string) (*BulkRes
 	return s.client.makeBulkRequest(ctx, req)
 }
 
+// Download will make a bulk request and write it to the provided io.Writer.
+// Typically this is going to be a file to write to.  The data is not parsed,
+// it is written directly to the writer.
 func (s *BulkService) Download(ctx context.Context, customerID string, w io.Writer) error {
 	url := fmt.Sprintf("%s/customer/%s/bulk/alerts", s.client.BaseURL, customerID)
 	req, err := http.NewRequest("GET", url, nil)
@@ -82,6 +94,9 @@ func (c *Client) makeBulkRequest(ctx context.Context, req *http.Request) (*BulkR
 	return scanBulk(res.Body)
 }
 
+// scanBulk will scan each line of a jsonlines body, either from a file
+// or from a direct request and will identify the different types, before
+// unmarshalling them into their respective structs.
 func scanBulk(body io.Reader) (*BulkResults, error) {
 	results := &BulkResults{}
 	scanner := bufio.NewScanner(body)

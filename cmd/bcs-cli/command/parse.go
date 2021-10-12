@@ -9,10 +9,13 @@ import (
 	"github.com/mitchellh/cli"
 )
 
+// ParseFileCommand is the top level struct for the cli ParseFileCommand.
+// It holds a reference to the cli.Ui for logging etc.
 type ParseFileCommand struct {
 	Ui cli.Ui
 }
 
+// Help provies the help text for this command.
 func (c *ParseFileCommand) Help() string {
 	helpText := `
 Usage: bcs-cli [global options] parse [options]
@@ -31,6 +34,8 @@ Options:
 `
 	return strings.TrimSpace(helpText)
 }
+
+// Run provides the command functionality
 func (c *ParseFileCommand) Run(args []string) int {
 	var filename string
 
@@ -61,6 +66,8 @@ func (c *ParseFileCommand) Run(args []string) int {
 	}
 	return 0
 }
+
+// Synopsis provides the one liner
 func (t *ParseFileCommand) Synopsis() string {
 	return "Parse downloaded bulk data file for stats."
 }

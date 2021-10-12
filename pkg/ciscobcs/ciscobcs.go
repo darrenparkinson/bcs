@@ -22,6 +22,7 @@ type Client struct {
 	APIKey string
 
 	// Services for accessing the various endpoints
+
 	BulkService                      *BulkService
 	ConfigurationBestPracticeService *ConfigurationBestPracticeService
 	CrashPreventionService           *CrashPreventionService
@@ -38,62 +39,62 @@ type Client struct {
 	lim *rate.Limiter
 }
 
-// BulkService
+// BulkService represents the bulk service
 type BulkService struct {
 	client *Client
 }
 
-// ConfigurationBestPracticeService
+// ConfigurationBestPracticeService represents the CBP endpoint
 type ConfigurationBestPracticeService struct {
 	client *Client
 }
 
-// CrashPreventionService
+// CrashPreventionService represents the CPS endpoint
 type CrashPreventionService struct {
 	client *Client
 }
 
-// FeedbackService
+// FeedbackService represents the feedback endpoint
 type FeedbackService struct {
 	client *Client
 }
 
-// InventoryService
+// InventoryService represents the inventory endpoint
 type InventoryService struct {
 	client *Client
 }
 
-// ProductAlertService
+// ProductAlertService represents the product alert endpoint
 type ProductAlertService struct {
 	client *Client
 }
 
-// RiskMitigationService
+// RiskMitigationService represents the risk mitigation endpoint
 type RiskMitigationService struct {
 	client *Client
 }
 
-// SoftwareTrackService
+// SoftwareTrackService represents the software track endpoint
 type SoftwareTrackService struct {
 	client *Client
 }
 
-// ContractService
+// ContractService represents the contract endpoint
 type ContractService struct {
 	client *Client
 }
 
-// CollectorsService
+// CollectorsService represents the collectors endpoint
 type CollectorsService struct {
 	client *Client
 }
 
-// CountService
+// CountService represents the count endpoint
 type CountService struct {
 	client *Client
 }
 
-// SyslogService
+// SyslogService represents the syslog endpoint
 type SyslogService struct {
 	client *Client
 }
@@ -153,6 +154,8 @@ func Float64(v float64) *float64 { return &v }
 // to store v and returns a pointer to it.
 func String(v string) *string { return &v }
 
+// makeRequestToWriter provides a single function to add common items to the request.
+// It will copy the contents of the body to the io.Writer provided in w.
 func (c *Client) makeRequestToWriter(ctx context.Context, req *http.Request, w io.Writer) error {
 	req.Header.Add("x-api-key", c.APIKey)
 	rc := req.WithContext(ctx)
@@ -168,6 +171,7 @@ func (c *Client) makeRequestToWriter(ctx context.Context, req *http.Request, w i
 }
 
 // makeRequest provides a single function to add common items to the request.
+// It will unmarshall the json body to interface provided in v.
 func (c *Client) makeRequest(ctx context.Context, req *http.Request, v interface{}) error {
 	req.Header.Add("x-api-key", c.APIKey)
 	if !c.lim.Allow() {
