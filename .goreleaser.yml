@@ -4,6 +4,7 @@ before:
 builds:
   - main: ./cmd/bcs-cli
     id: "cli"
+    binary: bcs-cli
     env:
       - CGO_ENABLED=0
     goos:
