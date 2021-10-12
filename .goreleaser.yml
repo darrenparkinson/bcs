@@ -2,7 +2,9 @@ before:
   hooks:
     - go mod tidy
 builds:
-  - env:
+  - main: ./cmd/bcs-cli
+    id: "cli"
+    env:
       - CGO_ENABLED=0
     goos:
       - darwin
