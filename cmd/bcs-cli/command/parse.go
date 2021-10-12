@@ -68,6 +68,6 @@ func (c *ParseFileCommand) Run(args []string) int {
 }
 
 // Synopsis provides the one liner
-func (t *ParseFileCommand) Synopsis() string {
+func (c *ParseFileCommand) Synopsis() string {
 	return "Parse downloaded bulk data file for stats."
 }
