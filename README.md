@@ -13,9 +13,20 @@ This repository consists of a library and CLI utility for extracting information
 go get github.com/darrenparkinson/bcs/cmd/bcs-cli
 ```
 
+Currently there are only two commands implemented:
+
+* `download` - will download bulk data given a customer ID and API key
+* `parse` - will parse a downloaded file to provide basic stats
+
+You can see detailed help as follows:
+
+* `$ bcs-cli download --help`
+* `$ bcs-cli parse --help`
+
 ## Using the library
 
 ```sh
 go get github.com/darrenparkinson/bcs/pkg/ciscobcs
 ```
 
+Currently only basic bulk download capability implemented.  Ideally we'll implement all the services.
