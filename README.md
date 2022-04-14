@@ -1,6 +1,8 @@
 # Cisco BCS (Cisco Business Critical Services)
 
-[![Status](https://img.shields.io/badge/status-wip-yellow)](https://github.com/darrenparkinson/bcs) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/darrenparkinson/bcs) ![GitHub](https://img.shields.io/github/license/darrenparkinson/bcs?color=brightgreen) [![GoDoc](https://pkg.go.dev/badge/darrenparkinson/bcs)](https://pkg.go.dev/github.com/darrenparkinson/bcs) [![Go Report Card](https://goreportcard.com/badge/github.com/darrenparkinson/bcs)](https://goreportcard.com/report/github.com/darrenparkinson/bcs)
+[![Status](https://img.shields.io/badge/status-retired-red)](https://github.com/darrenparkinson/bcs) ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/darrenparkinson/bcs) ![GitHub](https://img.shields.io/github/license/darrenparkinson/bcs?color=brightgreen) [![GoDoc](https://pkg.go.dev/badge/darrenparkinson/bcs)](https://pkg.go.dev/github.com/darrenparkinson/bcs) [![Go Report Card](https://goreportcard.com/badge/github.com/darrenparkinson/bcs)](https://goreportcard.com/report/github.com/darrenparkinson/bcs)
+
+Note: This repo is now retired.  Please use [bcs-export](https://github.com/darrenparkinson/bcs-export) instead.
 
 This repository consists of a library and CLI utility for extracting information from the Cisco BCS Insights API.
 
